@@ -1,13 +1,66 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../index.css";
 import SkillsSection from "../components/skills";
 import ProjectCarousel from "./projects";
+import profileImg from "../assets/profile.png";
+import profile2Img from "../assets/profile2.png";
+import guitarImg from "../assets/guitar.png";
+import btnImg from "../assets/btn.png";
 
 function Portfolio() {
+  const [showAltProfile, setShowAltProfile] = useState(false);
+  const [aboutVisible, setAboutVisible] = useState(false);
+  const aboutRef = useRef(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    let intervalId;
+    function scheduleGlimpse() {
+      // Troca a cada 5-15 segundos, aleatório
+      const next = Math.random() * 10000 + 5000;
+      intervalId = setTimeout(() => {
+        setShowAltProfile(true);
+        timeoutId = setTimeout(() => {
+          setShowAltProfile(false);
+          scheduleGlimpse();
+        }, 1000); // 1 segundo de glimpse
+      }, next);
+    }
+    scheduleGlimpse();
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(intervalId);
+    };
+  }, []);
+
+  // About section: animação só quando visível
+  useEffect(() => {
+    const section = aboutRef.current;
+    if (!section) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        setAboutVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Mostrar botão de voltar ao topo
+    const onScroll = () => {
+      setShowScrollTop(window.scrollY > 200);
+    };
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <main className="portfolio">
       {/* Apresentação */}
-      <section className="section intro">
+      <section className="section intro" id="home">
         <video autoPlay muted loop playsInline className="bg-video">
           <source src="/src/assets/bg-video.mp4" type="video/mp4" />
           Seu navegador não suporta vídeos em HTML5.
@@ -18,7 +71,7 @@ function Portfolio() {
         <div className="intro-overlay">
           <div className="intro-left">
             <img
-              src="/src/assets/profile.png"
+              src={showAltProfile ? profile2Img : profileImg}
               alt="Luiz Henrique"
               className="profile-pic"
             />
@@ -34,18 +87,18 @@ function Portfolio() {
               foco em tecnologias como React e Node.js.
             </p>
             <button className="img-btn">
-              <img src="/src/assets/btn.png" alt="Acessar" />
+              <img src={btnImg} alt="Acessar" />
             </button>
           </div>
         </div>
       </section>
 
       {/* Sobre mim */}
-      <section className="section about">
+      <section className="section about" id="about" ref={aboutRef}>
         <div className="about-div">
           {/* Introdução Centralizada */}
           <div className="about-intro about-section">
-            <h2>Sobre mim</h2>
+            <h2 className={`section-title-animate${aboutVisible ? " visible" : ""}`}>Sobre mim</h2>
             <p>
               Estudante de Engenharia de Software, pela universidade Unicesumar,
               meu objetivo profissional é impulsionado pelo gosto da sensação de
@@ -57,14 +110,15 @@ function Portfolio() {
           {/* Imagem central com animação */}
           <div className="about-section image-only">
             <img
-              src="/src/assets/guitar.png"
+              src={guitarImg}
               alt="Guitarra"
-              className="guitar-animated"
+              className={`guitar-animated fade-${aboutVisible ? "in" : "out"}`}
             />
           </div>
 
-          {/* Capacitações com summary */}
-          <div className="about-section center-text">
+          {/* Capacitações e Experiência Profissional lado a lado */}
+          <div className="about-details-row">
+            <div className="about-section about-details-left">
             <details>
               <summary>Capacitações</summary>
               <ul>
@@ -93,9 +147,7 @@ function Portfolio() {
               </ul>
             </details>
           </div>
-
-          {/* Experiência Profissional com summary */}
-          <div className="about-section center-text">
+            <div className="about-section about-details-right">
             <details>
               <summary>Experiência Profissional</summary>
               <p>
@@ -108,18 +160,23 @@ function Portfolio() {
                 formulários e validação de usuários.
               </p>
             </details>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Habilidades */}
-      <SkillsSection />
+      <section className="section skills" id="skills">
+        <SkillsSection />
+      </section>
 
       {/* Projetos */}
-      <ProjectCarousel />
+      <section className="section project-carousel project-bg-shared" id="projects">
+        <ProjectCarousel />
+      </section>
 
       {/* Contato */}
-      <section className="section contact">
+      <section className="section contact" id="contact">
         <div className="contact-container">
           <div className="contact-header">
             <h2 className="contact-title">Entre em Contato</h2>
@@ -181,8 +238,8 @@ function Portfolio() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                /seu-link
-              </a>
+            /seu-link
+          </a>
             </div>
           </div>
 
@@ -205,6 +262,15 @@ function Portfolio() {
           </div>
         </div>
       </section>
+
+      {/* Botão de voltar ao topo */}
+      <button
+        className={`scroll-to-top-btn${showScrollTop ? " visible" : ""}`}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Voltar ao topo"
+      >
+        ↑
+      </button>
     </main>
   );
 }

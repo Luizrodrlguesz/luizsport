@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import lunarbotImg from "/src/assets/lunar.png";
 import haberImg from "/src/assets/haber.png";
 import portfolioImg from "/src/assets/portifolio.png";
@@ -8,6 +8,8 @@ import laravelLogo from "/src/assets/skills/laravel.png";
 import tailwindLogo from "/src/assets/skills/tailwind.png";
 import figmaLogo from "/src/assets/skills/figma.png";
 import vercelLogo from "/src/assets/skills/vercel.png";
+import voyajatoImg from "../assets/voyajato.png";
+import boyImg from "../assets/boy.png";
 import "./project.css";
 
 const projects = [
@@ -54,24 +56,58 @@ const projects = [
 export default function ProjectCarousel() {
   const [active, setActive] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [fade, setFade] = useState("in"); // novo estado para fade
+  const [bgVisible, setBgVisible] = useState(false);
+  const [projectsVisible, setProjectsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        setProjectsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    // Efeito de entrada ao montar
+    setTimeout(() => setBgVisible(true), 300);
+  }, []);
 
   const handleProjectChange = (index) => {
     if (isAnimating || index === active) return;
     setIsAnimating(true);
+    setFade("out"); // inicia fade-out
     setTimeout(() => {
       setActive(index);
-      setIsAnimating(false);
-    }, 300);
+      setFade("in"); // inicia fade-in
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 350); // tempo do fade-in
+    }, 350); // tempo do fade-out
   };
 
   const currentProject = projects[active];
 
   return (
-    <section className="section project-carousel project-bg-shared">
+    <section className="section project-carousel project-bg-shared" ref={sectionRef}>
+      {/* Imagem decorativa boy à esquerda */}
+      <img
+        src={boyImg}
+        alt="Boy"
+        className={`boy-bg-img${projectsVisible ? " visible" : ""}`}
+        aria-hidden="true"
+      />
+      {/* Imagem decorativa voyajato removida daqui */}
       <div className="projects-container">
         {/* Header da seção */}
         <div className="projects-header">
-          <h2 className="projects-title">Projetos</h2>
+          <h2 className={`projects-title section-title-animate${projectsVisible ? " visible" : ""}`}>Projetos</h2>
           <p className="projects-subtitle">
             Conheça alguns dos meus trabalhos mais recentes e relevantes
           </p>
@@ -94,7 +130,7 @@ export default function ProjectCarousel() {
         </div>
 
         {/* Conteúdo principal do projeto */}
-        <div className="project-showcase">
+        <div className={`project-showcase fade-${fade}`}>
           <div className={`project-content-wrapper ${isAnimating ? "animating" : ""}`}>
             {/* Imagem do projeto */}
             <div className="project-image-section">
@@ -102,7 +138,7 @@ export default function ProjectCarousel() {
                 <img
                   src={currentProject.image}
                   alt={currentProject.title}
-                  className="project-main-image"
+                  className={`project-main-image fade-${fade}`}
                 />
                 <div 
                   className="project-image-overlay"

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./skills.css";
 import reactLogo from "/src/assets/skills/react.png";
 import jsLogo from "/src/assets/skills/js.png";
@@ -12,6 +12,7 @@ import nodeLogo from "/src/assets/skills/node.png";
 import jiraLogo from "/src/assets/skills/jira.png";
 import vercelLogo from "/src/assets/skills/vercel.png";
 import notionLogo from "/src/assets/skills/notion.png";
+import voyajatoImg from "../assets/voyajato.png";
 
 // Skill base
 const allSkills = {
@@ -113,6 +114,26 @@ export default function SkillsSection() {
   const [animatingCategory, setAnimatingCategory] = useState(false);
   const [animatingSkill, setAnimatingSkill] = useState(false);
   const timeoutRef = useRef(null);
+  const [bgVisible, setBgVisible] = useState(false);
+  const [skillsVisible, setSkillsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        setSkillsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => setBgVisible(true), 300);
+  }, []);
 
   const skills = allSkills[category];
   const selectedSkill = skills.find((s) => s.id === selectedSkillId);
@@ -139,8 +160,15 @@ export default function SkillsSection() {
   }
 
   return (
-    <section className="section skills">
-      <h2 className="text-center text-2xl font-bold mb-6 section-title-animate">Habilidades</h2>
+    <section className="section skills" ref={sectionRef}>
+      {/* Imagem decorativa voyajato no bottom right */}
+      <img
+        src={voyajatoImg}
+        alt="Voyajato"
+        className={`voyajato-bg-img-skills${skillsVisible ? " visible" : ""}`}
+        aria-hidden="true"
+      />
+      <h2 className={`text-center text-2xl font-bold mb-6 section-title-animate${skillsVisible ? " visible" : ""}`}>Habilidades</h2>
       <div className={`skills-wrapper animated-section ${animatingCategory ? "fade-slide-out" : "fade-slide-in"}`}> 
         {/* Coluna da imagem e descrição */}
         <div className={`skill-preview animated-preview ${animatingSkill ? "fade-zoom-out" : "fade-zoom-in"}`}> 

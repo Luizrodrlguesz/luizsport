@@ -118,8 +118,6 @@ body {
 .section {
   padding: 2rem;
 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Introdução */
@@ -270,7 +268,8 @@ body {
 .about-intro h2 {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 7.5rem;
+  margin-top: 2rem;
   background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -286,11 +285,22 @@ body {
 
 .guitar-animated {
   width: 500px;
-  animation: slideIn 5.5s ease-out forwards, float 10s ease-in-out infinite;
-  opacity: 0.1;
+  opacity: 0;
   transform: translateX(100px);
   position: absolute;
   top: 50px;
+  transition: opacity 0.6s cubic-bezier(.1,.2,.2,1), transform 0.7s cubic-bezier(.1,.2,.2,1);
+  pointer-events: none;
+}
+.guitar-animated.fade-in {
+  opacity: 0.1;
+  pointer-events: auto;
+  animation: slideIn 0.7s cubic-bezier(.1,.2,.2,1) forwards, float 10s ease-in-out infinite;
+}
+.guitar-animated.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
 }
 
 /* Animação de entrada */
@@ -863,3 +873,72 @@ li:last-child {
 }
 
 /* footer end */
+
+.about-details-row {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+  justify-content: center;
+  align-items: stretch;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.about-details-left, .about-details-right {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  .about-details-row {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: stretch;
+  }
+  .about-details-left, .about-details-right {
+    max-width: 100%;
+  }
+}
+
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(0, 255, 255, 0.18);
+  color: #fff;
+  font-size: 2rem;
+  border: none;
+  box-shadow: 0 4px 24px #00bcd4aa, 0 2px 8px #0002;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1002;
+  transition: opacity 0.4s cubic-bezier(.6,.2,.2,1), background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-to-top-btn.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.scroll-to-top-btn:hover {
+  background: var(--cyan, #00ffff);
+  color: #222;
+}
+@media (max-width: 600px) {
+  .scroll-to-top-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+  }
+}
