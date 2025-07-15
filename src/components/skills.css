@@ -1,0 +1,271 @@
+/* Habilidades */
+.section.skills {
+
+  padding: 6rem 2rem;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.section.skills::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 28% 55%, rgba(0, 255, 255, 0.055) 0%, transparent 25%),
+              radial-gradient(circle at 100% 50%, rgba(0, 255, 255, 0.041) 0%, transparent 25%);
+  pointer-events: none;
+}
+
+/* Wrapper em Grid com imagem à esquerda e conteúdo à direita */
+.skills-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: start;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Lado esquerdo (imagem + descrição) */
+.skill-preview {
+  text-align: center;
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.034);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 4px 16px #06b6d4aa);
+  transition: transform 0.4s cubic-bezier(.6,.2,.2,1);
+}
+
+.preview-description {
+  color: #e0e7ef;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  padding: 0 1.2rem;
+  margin-top: 0.5rem;
+  font-weight: 400;
+  text-shadow: 0 2px 8px #0002;
+}
+
+/* Conteúdo da seção à direita */
+.skills-content {
+  width: 100%;
+}
+
+/* Lista de skills */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.2rem 2.2rem;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2.5rem;
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.034);
+  border: 1.5px solid var(--glass-border,rgba(255,255,255,0.22));
+  border-radius: 1.2rem;
+  padding: 1.2rem 0.7rem 1.1rem 0.7rem;
+  width: 140px;
+  height: 170px;
+  cursor: pointer;
+  transition: all 0.32s cubic-bezier(.6,.2,.2,1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.13);
+  position: relative;
+  z-index: 1;
+  opacity: 0.96;
+}
+
+.skill-card:hover,
+.skill-card.active,
+.skill-card:focus {
+  border-color: var(--cyan,#06b6d4);
+  background: rgba(255, 255, 255, 0.103);
+  transform: translateY(-10px) scale(1.045) rotate(-1.5deg);
+  box-shadow: 0 16px 32px #06b6d455, 0 2px 8px #0002;
+  opacity: 1;
+}
+
+.skill-card img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  margin-bottom: 0.7rem;
+  filter: drop-shadow(0 2px 8px #06b6d4aa);
+  transition: transform 0.3s cubic-bezier(.6,.2,.2,1);
+}
+
+.skill-card:hover img,
+.skill-card.active img {
+  transform: scale(1.13) rotate(-4deg);
+}
+
+.skill-card span {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px #0002;
+}
+
+/* Descrição da skill (versão antiga, agora está na coluna esquerda) */
+.skill-description {
+  display: none; /* escondido, pois agora usamos .preview-description */
+}
+
+/* Botões de categoria */
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.3rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.category-buttons button {
+  padding: 0.7rem 1.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.09);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(.6,.2,.2,1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.category-buttons button:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-3px) scale(1.07);
+  box-shadow: 0 8px 24px #06b6d455, 0 2px 8px #0002;
+}
+
+.category-buttons button.active {
+  background: #06b6d4;
+  color: #fff;
+  border-color: #06b6d4;
+  box-shadow: 0 8px 24px #06b6d4aa, 0 2px 8px #0002;
+  transform: scale(1.09);
+}
+
+/* ANIMAÇÕES MODERNAS */
+@keyframes fadeSlideIn {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeSlideOut {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-40px) scale(0.98); }
+}
+@keyframes fadeZoomIn {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeZoomOut {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.08); }
+}
+@keyframes cardPopIn {
+  0% { opacity: 0; transform: scale(0.85) translateY(30px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.animated-section.fade-slide-in {
+  animation: fadeSlideIn 0.5s cubic-bezier(.6,.2,.2,1) both;
+}
+.animated-section.fade-slide-out {
+  animation: fadeSlideOut 0.35s cubic-bezier(.6,.2,.2,1) both;
+}
+.animated-preview.fade-zoom-in {
+  animation: fadeZoomIn 0.4s cubic-bezier(.6,.2,.2,1) both;
+}
+.animated-preview.fade-zoom-out {
+  animation: fadeZoomOut 0.3s cubic-bezier(.6,.2,.2,1) both;
+}
+.skill-card-animate {
+  animation: cardPopIn 0.5s cubic-bezier(.6,.2,.2,1) both;
+}
+
+.section-title-animate {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #fff 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.02em;
+  animation: fadeSlideIn 0.7s cubic-bezier(.6,.2,.2,1) both;
+  margin-bottom: 4rem;
+  text-align: center; 
+}
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+  .skills-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 0 0.5rem;
+  }
+  .skill-preview {
+    min-height: 220px;
+    padding: 1.5rem 0.7rem 1.2rem 0.7rem;
+  }
+}
+@media (max-width: 600px) {
+  .section.skills {
+    padding: 2.5rem 0.2rem 3.5rem 0.2rem;
+  }
+  .skills-wrapper {
+    border-radius: 1rem;
+    gap: 1.2rem;
+  }
+  .skill-card {
+    width: 100px;
+    height: 120px;
+    padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+  }
+  .skill-card img {
+    width: 36px;
+    height: 36px;
+  }
+  .preview-image {
+    width: 90px;
+    height: 90px;
+  }
+}
