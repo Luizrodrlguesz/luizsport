@@ -1,4 +1,4 @@
-/* Habilidades */
+
 .section.skills {
 
   padding: 3rem 0 10rem;
@@ -21,7 +21,6 @@
   pointer-events: none;
 }
 
-/* Wrapper em Grid com imagem à esquerda e conteúdo à direita */
 .skills-wrapper {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -29,12 +28,12 @@
   gap: 4rem;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
   border-radius: 2rem;
   position: relative;
   z-index: 2;
 }
 
-/* Lado esquerdo (imagem + descrição) */
 .skill-preview {
   text-align: center;
   padding: 2.5rem 1.5rem 2rem 1.5rem;
@@ -69,12 +68,10 @@
   text-shadow: 0 2px 8px #0002;
 }
 
-/* Conteúdo da seção à direita */
 .skills-content {
   width: 100%;
 }
 
-/* Lista de skills */
 .skills-list {
   display: flex;
   flex-wrap: wrap;
@@ -137,12 +134,10 @@
   text-shadow: 0 2px 8px #0002;
 }
 
-/* Descrição da skill (versão antiga, agora está na coluna esquerda) */
 .skill-description {
-  display: none; /* escondido, pois agora usamos .preview-description */
+  display: none; 
 }
 
-/* Botões de categoria */
 .category-buttons {
   display: flex;
   justify-content: center;
@@ -152,38 +147,42 @@
 }
 
 .category-buttons button {
-  padding: 0.7rem 1.6rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  border: 1.5px solid rgba(255,255,255,0.18);
+  padding: 0.9em 2.2em;
+  border-radius: 1.5em;
+  border: 1px solid rgba(255, 255, 255, 0.089);
+  border-bottom: 2.5px solid var(--cyan);
   background: rgba(255,255,255,0.09);
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.28s cubic-bezier(.6,.2,.2,1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  color: var(--cyan);
   font-size: 1.08rem;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(.6,.2,.2,1);
   margin-bottom: 0.2rem;
-  position: relative;
-  z-index: 2;
+  margin-right: 0.7rem;
+  text-shadow: 0 2px 8px #00bcd455;
+  outline: none;
+
 }
 
-.category-buttons button:hover {
-  background: rgba(255,255,255,0.18);
-  transform: translateY(-3px) scale(1.07);
-  box-shadow: 0 8px 24px #06b6d455, 0 2px 8px #0002;
+.category-buttons button:hover, .category-buttons button:focus {
+  background: rgba(0,255,255,0.13);
+  color: #fff;
+  border-color: var(--cyan);
+  box-shadow: 0 8px 32px #00bcd455, 0 2px 8px #0002;
+  transform: translateY(-2px) scale(1.04);
 }
 
 .category-buttons button.active {
-  background: #06b6d4;
+  background: #06b5d480;
   color: #fff;
-  border-color: #06b6d4;
-  box-shadow: 0 8px 24px #06b6d4aa, 0 2px 8px #0002;
-  transform: scale(1.09);
+  border-color: var(--cyan);
+  box-shadow: 0 8px 32px #00bcd455, 0 2px 8px #0002;
+  transform: translateY(-2px) scale(1.04);
 }
 
-/* ANIMAÇÕES MODERNAS */
 @keyframes fadeSlideIn {
   0% { opacity: 0; transform: translateY(40px) scale(0.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -235,7 +234,6 @@
   text-align: center; 
 }
 
-/* RESPONSIVO */
 @media (max-width: 900px) {
   .skills-wrapper {
     grid-template-columns: 1fr;
@@ -267,5 +265,81 @@
   .preview-image {
     width: 90px;
     height: 90px;
+  }
+}
+
+
+.voyajato-bg-img {
+  position: absolute;
+  top: -230px;
+  right: -300px;
+  width: 520px;
+  max-width: 60vw;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 12px #00bcd4aa);
+  transition: opacity 0.7s cubic-bezier(.6,.2,.2,1), right 1.1s cubic-bezier(.6,.2,.2,1);
+}
+.voyajato-bg-img.visible {
+  opacity: 0.13;
+  right: 60px;
+}
+@media (max-width: 900px) {
+  .voyajato-bg-img {
+    width: 320px;
+    right: -120px;
+    top: 20px;
+  }
+  .voyajato-bg-img.visible {
+    right: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .voyajato-bg-img {
+    width: 180px;
+    right: -60px;
+    top: 30px;
+  }
+  .voyajato-bg-img.visible {
+    right: 0;
+  }
+}
+
+.voyajato-bg-img-skills {
+  position: absolute;
+  bottom: 40px;
+  right: -300px;
+  width: 670px;
+  max-width: 60vw;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 15px #00bbd49a);
+  transition: opacity 0.7s cubic-bezier(.6,.2,.2,1), right 1.1s cubic-bezier(.6,.2,.2,1);
+}
+.voyajato-bg-img-skills.visible {
+  opacity: 0.13;
+  right: 60px;
+  top: 100px;
+}
+@media (max-width: 900px) {
+  .voyajato-bg-img-skills {
+    width: 320px;
+    right: -120px;
+    bottom: 20px;
+  }
+  .voyajato-bg-img-skills.visible {
+    right: 10px;
+  }
+}
+@media (max-width: 600px) {
+  .voyajato-bg-img-skills {
+    width: 180px;
+    right: -60px;
+    bottom: 30px;
+  }
+  .voyajato-bg-img-skills.visible {
+    right: 0;
   }
 }

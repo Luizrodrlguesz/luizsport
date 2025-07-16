@@ -6,12 +6,23 @@ import profileImg from "../assets/profile.png";
 import profile2Img from "../assets/profile2.png";
 import guitarImg from "../assets/guitar.png";
 import btnImg from "../assets/btn.png";
+import { useLanguage } from "../LanguageContext";
+import translations from "../i18n";
 
 function Portfolio() {
   const [showAltProfile, setShowAltProfile] = useState(false);
   const [aboutVisible, setAboutVisible] = useState(false);
   const aboutRef = useRef(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const { language } = useLanguage();
+  const t = translations[language];
+  const capacitationsList = t.about.capacitationsList || [
+    // fallback caso não exista no i18n
+    "🔹 Front-end: Proficiente em HTML, CSS, JavaScript, Tailwind CSS e React. Tenho experiência na criação de interfaces responsivas e interativas, garantindo uma excelente experiência para os usuários.",
+    "🔹 Back-end: Conhecimento em Node.js e PHP(Laravel). Participei de projetos com foco em integrações, formulários e segurança, proporcionando uma visão abrangente do ciclo de desenvolvimento.",
+    "🔹 Controle de Versão e Colaboração: Experiência com Git e metodologias ágeis, permitindo uma integração eficaz em equipes de desenvolvimento.",
+    "🔹 Comunicação Global: Certificado em curso de inglês, possibilitando uma colaboração eficiente em projetos internacionais."
+  ];
 
   useEffect(() => {
     let timeoutId;
@@ -75,19 +86,21 @@ function Portfolio() {
               alt="Luiz Henrique"
               className="profile-pic"
             />
-            <h1>Eu sou Luiz Henrique</h1>
-            <p>Desenvolvedor Júnior Front-end | React | Node.js | Tailwind</p>
+            <h1>{t.intro.title}</h1>
+            <p>{t.intro.subtitle}</p>
           </div>
 
           <div className="intro-right">
             <p>
-              Olá, sou Luiz Rodrigues, Desenvolvedor Júnior Front-end. Comecei
-              minha jornada no desenvolvimento em 2023 e desde então venho
-              aprendendo e aplicando minhas habilidades em projetos reais, com
-              foco em tecnologias como React e Node.js.
+              {t.intro.description}
             </p>
-            <button className="img-btn">
-              <img src={btnImg} alt="Acessar" />
+            <button className="img-btn" onClick={() => {
+              const el = document.getElementById('about');
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            }}>
+              Start
             </button>
           </div>
         </div>
@@ -98,16 +111,12 @@ function Portfolio() {
         <div className="about-div">
           {/* Introdução Centralizada */}
           <div className="about-intro about-section">
-            <h2 className={`section-title-animate${aboutVisible ? " visible" : ""}`}>Sobre mim</h2>
+            <h2 className={`section-title-animate${aboutVisible ? " visible" : ""}`}>{t.about.title}</h2>
             <p>
-              Estudante de Engenharia de Software, pela universidade Unicesumar,
-              meu objetivo profissional é impulsionado pelo gosto da sensação de
-              saber mais sobre a área e poder ajudar cada vez mais as pessoas
-              que me acompanham nessa jornada.
+              {t.about.description}
             </p>
           </div>
 
-          {/* Imagem central com animação */}
           <div className="about-section image-only">
             <img
               src={guitarImg}
@@ -116,72 +125,47 @@ function Portfolio() {
             />
           </div>
 
-          {/* Capacitações e Experiência Profissional lado a lado */}
           <div className="about-details-row">
             <div className="about-section about-details-left">
-            <details>
-              <summary>Capacitações</summary>
-              <ul>
-                <li>
-                  🔹 Front-end: Proficiente em HTML, CSS, JavaScript, SASS e
-                  React. Tenho experiência na criação de interfaces responsivas
-                  e interativas, garantindo uma excelente experiência para os
-                  usuários.
-                </li>
-                <li>
-                  🔹 Back-end: Conhecimento em PHP e Laravel. Participei de
-                  projetos com foco em integrações, formulários e segurança,
-                  proporcionando uma visão abrangente do ciclo de
-                  desenvolvimento.
-                </li>
-                <li>
-                  🔹 Controle de Versão e Colaboração: Experiência com Git e
-                  metodologias ágeis, permitindo uma integração eficaz em
-                  equipes de desenvolvimento.
-                </li>
-                <li>
-                  🔹 Comunicação Global: Certificado em curso de inglês,
-                  possibilitando uma colaboração eficiente em projetos
-                  internacionais.
-                </li>
-              </ul>
-            </details>
-          </div>
+              <details>
+                <summary>{t.about.capacitations}</summary>
+                <ul>
+                  {capacitationsList.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </details>
+            </div>
             <div className="about-section about-details-right">
-            <details>
-              <summary>Experiência Profissional</summary>
-              <p>
-                Trabalhei durante 5 meses em uma startup, atuando principalmente
-                no desenvolvimento Front-end. Minha experiência incluiu a
-                criação de sites, manutenção e correção de bugs em interfaces de
-                sistemas, utilizando HTML, CSS e JavaScript. Além disso, tive a
-                oportunidade de aprender e aplicar conceitos de Back-end,
-                trabalhando com PHP e Laravel em tarefas como desenvolvimento de
-                formulários e validação de usuários.
-              </p>
-            </details>
+              <details>
+                <summary>{t.about.experience}</summary>
+                <p>
+                  {t.about.experience1}
+                </p>
+                <br />
+                <p>
+                  {t.about.experience2}
+                </p>
+              </details>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Habilidades */}
       <section className="section skills" id="skills">
         <SkillsSection />
       </section>
 
-      {/* Projetos */}
       <section className="section project-carousel project-bg-shared" id="projects">
         <ProjectCarousel />
       </section>
 
-      {/* Contato */}
       <section className="section contact" id="contact">
         <div className="contact-container">
           <div className="contact-header">
-            <h2 className="contact-title">Entre em Contato</h2>
+            <h2 className="contact-title">{t.contact.title}</h2>
             <p className="contact-subtitle">
-              Vamos criar algo incrível juntos! Estou sempre aberto a novas oportunidades e colaborações.
+              {t.contact.subtitle}
             </p>
           </div>
 
@@ -193,7 +177,7 @@ function Portfolio() {
                 </svg>
               </div>
               <h3>Email</h3>
-              <p>Envie uma mensagem direta</p>
+              <p>{t.contact.email}</p>
               <a 
                 href="mailto:luizh4321@gmail.com" 
                 className="contact-link email-link"
@@ -211,7 +195,7 @@ function Portfolio() {
                 </svg>
               </div>
               <h3>GitHub</h3>
-              <p>Veja meus projetos e contribuições</p>
+              <p>{t.contact.github}</p>
               <a 
                 href="https://github.com/Luizrodrlguesz" 
                 className="contact-link github-link"
@@ -231,29 +215,29 @@ function Portfolio() {
                 </svg>
               </div>
               <h3>LinkedIn</h3>
-              <p>Conecte-se profissionalmente</p>
+              <p>{t.contact.linkedin}</p>
               <a 
                 href="https://linkedin.com/in/seu-link" 
                 className="contact-link linkedin-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-            /seu-link
-          </a>
+                /seu-link
+              </a>
             </div>
           </div>
 
           <div className="contact-cta">
             <div className="cta-content">
-              <h3>Pronto para começar?</h3>
-              <p>Vamos transformar suas ideias em realidade digital</p>
+              <h3>{t.contact.ctaTitle}</h3>
+              <p>{t.contact.ctaSubtitle}</p>
               <a 
                 href="mailto:luizh4321@gmail.com" 
                 className="cta-button"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Iniciar Conversa
+                {t.contact.ctaButton}
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>

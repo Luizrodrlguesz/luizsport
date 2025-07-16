@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import logoImg from "../assets/64-logo.png";
+import { useLanguage } from "../LanguageContext";
+import translations from "../i18n";
 
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const t = translations[language].header;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +32,16 @@ function Header() {
       <div className="header-content">
         <img src={logoImg} alt="Logo" />
         <nav className="nav">
-          <a href="#home" onClick={e => handleNavClick(e, 'home')}>Início</a>
-          <a href="#about" onClick={e => handleNavClick(e, 'about')}>Sobre</a>
-          <a href="#skills" onClick={e => handleNavClick(e, 'skills')}>Habilidades</a>
-          <a href="#projects" onClick={e => handleNavClick(e, 'projects')}>Projetos</a>
-          <a href="#contact" onClick={e => handleNavClick(e, 'contact')}>Contato</a>
+          <a href="#home" onClick={e => handleNavClick(e, 'home')}>{t.home}</a>
+          <a href="#about" onClick={e => handleNavClick(e, 'about')}>{t.about}</a>
+          <a href="#skills" onClick={e => handleNavClick(e, 'skills')}>{t.skills}</a>
+          <a href="#projects" onClick={e => handleNavClick(e, 'projects')}>{t.projects}</a>
+          <a href="#contact" onClick={e => handleNavClick(e, 'contact')}>{t.contact}</a>
+          <select className="lang-select" value={language} onChange={e => setLanguage(e.target.value)}>
+            <option value="pt">PT-BR</option>
+            <option value="en">EN-US</option>
+            <option value="fr">FR-FR</option>
+          </select>
         </nav>
       </div>
     </header>

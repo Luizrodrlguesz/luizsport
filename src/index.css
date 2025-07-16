@@ -1,4 +1,4 @@
-/* Reset básico */
+
 * {
   margin: 0;
   padding: 0;
@@ -27,7 +27,6 @@ body {
   line-height: 1.6;
 }
 
-/* header */
 .header {
   position: fixed;
   top: 20px;
@@ -50,7 +49,7 @@ body {
 .header-scrolled {
   left: 0;
   transform: none;
-  width: 40%;
+  width: 45%;
   background: rgba(20, 20, 20, 0.13);
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 20px rgba(10, 10, 8, 0.3);
@@ -87,7 +86,6 @@ body {
   color: var(--cyan);
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .nav a {
     margin-left: 0.8rem;
@@ -106,21 +104,46 @@ body {
     gap: 1rem;
   }
 }
-/* header end */
 
-/* Estrutura geral */
+
+.lang-select {
+  margin-left: 2rem;
+  padding: 0.5em 0.2rem 0.3rem 0.2em;
+  border-radius: 4px;
+  border: 1px solid #ffffffd2;
+  background: rgba(255, 255, 255, 0.041);
+  color: #ffffffc5;
+  font-size: 0.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  backdrop-filter: blur(4px);
+  transition: box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.lang-select option {
+  background: #181818;
+  color: var(--text);
+}
+.lang-select:focus, .lang-select:hover {
+  background: rgba(255, 255, 255, 0.062);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  box-shadow: 0 4px 16px rgba(1, 212, 240, 0.12);
+  outline: none;
+}
+
+
 .portfolio {
   display: flex;
   flex-direction: column;
 }
 
-/* Seções */
+
 .section {
   padding: 2rem;
 
 }
 
-/* Introdução */
 
 @keyframes fadeInFromLeft {
   0% {
@@ -173,7 +196,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 4rem;
+  padding: 2.5rem;
   width: 100%;
   max-width: 1200px;
   color: white;
@@ -204,7 +227,7 @@ body {
   font-size: 2rem;
   margin: 0 0 10px;
   position: relative;
-  z-index: 1; /* fica por cima da logo */
+  z-index: 1; 
 }
 
 .intro-left p {
@@ -219,11 +242,32 @@ body {
 }
 
 .img-btn {
-  background: none;
-  border: none;
-  margin-top: 20px;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9em 2.2em;
+  border-radius: 1.5em;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.09);
+  color: var(--cyan);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  backdrop-filter: blur(10px);
   cursor: pointer;
+  transition: all 0.22s cubic-bezier(.6,.2,.2,1);
+  margin-top: 1.2rem;
+  border-bottom: 2.5px solid var(--cyan);
+  text-shadow: 0 2px 8px #00bcd455;
+}
+.img-btn:hover, .img-btn:focus {
+  background: rgba(0,255,255,0.13);
+  color: #fff;
+  border-color: var(--cyan);
+  box-shadow: 0 8px 32px #00bcd455, 0 2px 8px #0002;
+  transform: translateY(-2px) scale(1.04);
+  outline: none;
 }
 
 .img-btn img {
@@ -263,6 +307,7 @@ body {
 .center-text {
   text-align: center;
   z-index: 9;
+  padding: 0 2rem;
 }
 
 .about-intro h2 {
@@ -303,7 +348,6 @@ body {
   animation: none;
 }
 
-/* Animação de entrada */
 @keyframes slideIn {
   to {
     transform: translateX(0);
@@ -311,7 +355,6 @@ body {
   }
 }
 
-/* Animação de flutuação */
 @keyframes float {
   0% {
     transform: translateY(0);
@@ -324,7 +367,6 @@ body {
   }
 }
 
-/* Estilo para <details> - Design Moderno e Elaborado */
 details {
   margin-top: 2rem;
   background: rgba(255, 255, 255, 0.08);
@@ -363,7 +405,6 @@ details:hover {
   transform: translateY(-2px);
 }
 
-/* Estilo para <summary> */
 summary {
   font-weight: 600;
   font-size: 1.3rem;
@@ -415,12 +456,10 @@ details[open] summary {
   color: var(--cyan);
 }
 
-/* Remove seta padrão do summary */
 summary::-webkit-details-marker {
   display: none;
 }
 
-/* Conteúdo do details */
 details > div,
 details > p,
 details > ul {
@@ -430,12 +469,10 @@ details > ul {
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Animação de abrir */
 details[open] {
   animation: expandDetails 0.5s cubic-bezier(.6,.2,.2,1) forwards;
 }
 
-/* Fade/slide ao abrir o details */
 @keyframes expandDetails {
   0% {
     opacity: 0.8;
@@ -461,7 +498,7 @@ li {
   padding: 1rem 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
-  border-left: 3px solid var(--cyan);
+ 
   transition: all 0.3s ease;
   position: relative;
 }
@@ -476,7 +513,6 @@ li:last-child {
   margin-bottom: 0;
 }
 
-/* Projetos */
 .project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -514,7 +550,6 @@ li:last-child {
   font-size: 0.95rem;
 }
 
-/* Contato - Design Moderno e Elaborado */
 .section.contact {
   background-image: url("/src/assets/basket-texture.png");
   background-size: cover;
@@ -664,7 +699,7 @@ li:last-child {
 }
 
 .email-link {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #ee4e4e 0%, #92667b 100%);
   color: #fff;
   box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
 }
@@ -673,10 +708,11 @@ li:last-child {
   background: linear-gradient(135deg, #24292e 0%, #586069 100%);
   color: #fff;
   box-shadow: 0 4px 16px rgba(36, 41, 46, 0.3);
+  border: 1px solid #24292e;
 }
 
 .linkedin-link {
-  background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+  background: linear-gradient(135deg, #3a7da1 0%, #42606b 100%);
   color: #fff;
   box-shadow: 0 4px 16px rgba(0, 119, 181, 0.3);
 }
@@ -745,7 +781,6 @@ li:last-child {
   transform: translateX(4px);
 }
 
-/* Animações */
 @keyframes cardPopIn {
   0% {
     opacity: 0;
@@ -768,7 +803,6 @@ li:last-child {
   }
 }
 
-/* Responsivo */
 @media (max-width: 768px) {
   .section.contact {
     padding: 4rem 1rem;
@@ -820,7 +854,6 @@ li:last-child {
   }
 }
 
-/* Responsividade extra */
 @media (max-width: 768px) {
   .portfolio {
     padding: 2rem 1rem;
@@ -831,7 +864,7 @@ li:last-child {
     height: 120px;
   }
 }
-/* footer */
+
 .footer {
   background: #0e0e0e;
   padding: 2rem 1rem;
@@ -864,15 +897,12 @@ li:last-child {
   color: #fff;
 }
 
-/* Responsivo */
 @media (max-width: 600px) {
   .footer-socials {
     flex-direction: column;
     gap: 0.5rem;
   }
 }
-
-/* footer end */
 
 .about-details-row {
   display: flex;
@@ -887,7 +917,7 @@ li:last-child {
 .about-details-left, .about-details-right {
   flex: 1 1 0;
   min-width: 0;
-  max-width: 520px;
+  max-width: 545px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

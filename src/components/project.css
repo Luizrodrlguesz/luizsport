@@ -1,4 +1,4 @@
-/* Seção de Projetos - Design Moderno e Profissional */
+
 .project-carousel {
   min-height: 100vh;
   width: 100%;
@@ -44,7 +44,6 @@
   z-index: 2;
 }
 
-/* Header da seção */
 .projects-header {
   text-align: center;
   margin-bottom: 4rem;
@@ -71,7 +70,6 @@
   line-height: 1.6;
 }
 
-/* Navegação dos projetos */
 .projects-nav {
   display: flex;
   justify-content: center;
@@ -150,7 +148,6 @@
   z-index: 1;
 }
 
-/* Showcase do projeto */
 .project-showcase {
   background: rgba(255, 255, 255, 0.08);
   border: 1.5px solid rgba(255, 255, 255, 0.15);
@@ -197,7 +194,6 @@
   animation: projectTransition 0.3s ease-in-out;
 }
 
-/* Seção da imagem */
 .project-image-section {
   position: relative;
 }
@@ -245,7 +241,6 @@
   pointer-events: none;
 }
 
-/* Seção de informações */
 .project-info-section {
   display: flex;
   flex-direction: column;
@@ -276,7 +271,7 @@
 
 .project-subtitle-info {
   font-size: 1.2rem;
-  color: #ccc;
+  color: #cccccc69;
   font-weight: 500;
 }
 
@@ -287,7 +282,6 @@
   margin-bottom: 1rem;
 }
 
-/* Tecnologias */
 .project-technologies {
   margin-bottom: 2rem;
 }
@@ -328,7 +322,6 @@
   object-fit: contain;
 }
 
-/* Botões de ação */
 .project-actions {
   display: flex;
   gap: 1rem;
@@ -378,7 +371,6 @@
   color: #fff;
 }
 
-/* Indicadores */
 .project-indicators {
   display: none;
 }
@@ -402,7 +394,6 @@
   box-shadow: 0 0 20px var(--cyan);
 }
 
-/* Animações */
 @keyframes fadeSlideIn {
   0% {
     opacity: 0;
@@ -425,7 +416,6 @@
   }
 }
 
-/* Responsivo */
 @media (max-width: 1200px) {
   .project-content-wrapper {
     grid-template-columns: 1fr;
@@ -492,42 +482,6 @@
   }
 }
 
-.voyajato-bg-img {
-  position: absolute;
-  top: -230px;
-  right: -300px;
-  width: 520px;
-  max-width: 60vw;
-  opacity: 0;
-  z-index: 0;
-  pointer-events: none;
-  filter: drop-shadow(0 8px 12px #00bcd4aa);
-  transition: opacity 0.7s cubic-bezier(.6,.2,.2,1), right 1.1s cubic-bezier(.6,.2,.2,1);
-}
-.voyajato-bg-img.visible {
-  opacity: 0.13;
-  right: 60px;
-}
-@media (max-width: 900px) {
-  .voyajato-bg-img {
-    width: 320px;
-    right: -120px;
-    top: 20px;
-  }
-  .voyajato-bg-img.visible {
-    right: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .voyajato-bg-img {
-    width: 180px;
-    right: -60px;
-    top: 30px;
-  }
-  .voyajato-bg-img.visible {
-    right: 0;
-  }
-}
 
 .boy-bg-img {
   position: absolute;
@@ -566,40 +520,3 @@
   }
 }
 
-.voyajato-bg-img-skills {
-  position: absolute;
-  bottom: 40px;
-  right: -300px;
-  width: 670px;
-  max-width: 60vw;
-  opacity: 0;
-  z-index: 0;
-  pointer-events: none;
-  filter: drop-shadow(0 8px 15px #00bbd49a);
-  transition: opacity 0.7s cubic-bezier(.6,.2,.2,1), right 1.1s cubic-bezier(.6,.2,.2,1);
-}
-.voyajato-bg-img-skills.visible {
-  opacity: 0.13;
-  right: 60px;
-  top: 100px;
-}
-@media (max-width: 900px) {
-  .voyajato-bg-img-skills {
-    width: 320px;
-    right: -120px;
-    bottom: 20px;
-  }
-  .voyajato-bg-img-skills.visible {
-    right: 10px;
-  }
-}
-@media (max-width: 600px) {
-  .voyajato-bg-img-skills {
-    width: 180px;
-    right: -60px;
-    bottom: 30px;
-  }
-  .voyajato-bg-img-skills.visible {
-    right: 0;
-  }
-}
