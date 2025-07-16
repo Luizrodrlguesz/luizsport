@@ -21,9 +21,9 @@ const projects = [
   {
     id: 1,
     title: {
-      pt: "Dashboard LunarBot",
-      en: "LunarBot Dashboard",
-      fr: "Tableau de bord LunarBot"
+      pt: "LunarBot.io",
+      en: "LunarBot.io",
+      fr: "LunarBot.io"
     },
     subtitle: {
       pt: "Dashboard Administrativo",
