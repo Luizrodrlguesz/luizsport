@@ -127,17 +127,17 @@ function Portfolio() {
 
           <div className="about-details-row">
             <div className="about-section about-details-left">
-              <details>
+            <details>
                 <summary>{t.about.capacitations}</summary>
                 <ul>
                   {capacitationsList.map((item, idx) => (
                     <li key={idx}>{item}</li>
                   ))}
-                </ul>
-              </details>
-            </div>
+              </ul>
+            </details>
+          </div>
             <div className="about-section about-details-right">
-              <details>
+            <details>
                 <summary>{t.about.experience}</summary>
                 <p>
                   {t.about.experience1}
@@ -145,19 +145,19 @@ function Portfolio() {
                 <br />
                 <p>
                   {t.about.experience2}
-                </p>
-              </details>
+              </p>
+            </details>
             </div>
           </div>
         </div>
       </section>
 
       <section className="section skills" id="skills">
-        <SkillsSection />
+      <SkillsSection />
       </section>
 
       <section className="section project-carousel project-bg-shared" id="projects">
-        <ProjectCarousel />
+      <ProjectCarousel />
       </section>
 
       <section className="section contact" id="contact">
@@ -216,18 +216,52 @@ function Portfolio() {
               </div>
               <h3>LinkedIn</h3>
               <p>{t.contact.linkedin}</p>
-              <a 
-                href="https://linkedin.com/in/seu-link" 
-                className="contact-link linkedin-link"
+                              <a
+                  href="https://www.linkedin.com/in/luiz-rodrigues-372866256/"
+                  className="contact-link linkedin-link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                /seu-link
+                Luiz Rodrigues
               </a>
             </div>
           </div>
 
-          <div className="contact-cta">
+          <div className="contact-cta cta-flex">
+            <div className="cta-side-card">
+              <div className="resume-content">
+                <div className="resume-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2V16M12 16L8 12M12 16L16 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <rect x="4" y="18" width="16" height="4" rx="2" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
+                </div>
+                <h3>Currículo</h3>
+                <p>{t.contact.resume}</p>
+                <a 
+                  href="/LuizRodriguesCV.pdf" 
+                  className="resume-download-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="LuizRodriguesCV.pdf"
+                  onClick={(e) => {
+                    console.log('Tentando baixar PDF...');
+                    // Verificar se o navegador suporta download
+                    const link = document.createElement('a');
+                    if (link.download !== undefined) {
+                      // Navegador suporta download, deixar funcionar normalmente
+                      return;
+                    } else {
+                      // Fallback: abrir em nova aba
+                      e.preventDefault();
+                      window.open('/LuizRodriguesCV.pdf', '_blank');
+                    }
+                  }}
+                >
+                  PDF
+                </a>
+              </div>
+            </div>
             <div className="cta-content">
               <h3>{t.contact.ctaTitle}</h3>
               <p>{t.contact.ctaSubtitle}</p>

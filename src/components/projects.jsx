@@ -36,8 +36,8 @@ const projects = [
       fr: "Système de gestion pour bot Telegram avec interface intuitive. Comprend le contrôle des utilisateurs, messages, commandes, groupes et surveillance des statistiques, configurations et logs. Développé avec un focus sur l'utilisabilité et l'efficacité opérationnelle."
     },
     image: lunarbotImg,
-    themeColor: "#0ea5e9",
-    liveLink: "https://lunarbot.vercel.app",
+    themeColor: "#8b5cf6",
+    liveLink: "https://lunarbot.com.br/",
     figmaLink: "#",
     skills: [htmlcssLogo, bootstrapLogo, javascriptLogo, laravelLogo, notionLogo, figmaLogo],
     category: {
@@ -64,7 +64,7 @@ const projects = [
       fr: "Landing page élégante axée sur la génération de leads pour les services comptables. Design responsive axé sur la conversion et l'expérience utilisateur."
     },
     image: haberImg,
-    themeColor: "#f43f5e",
+    themeColor: "#22c55e",
     liveLink: "https://haber.vercel.app",
     figmaLink: "#",
     skills: [reactLogo, htmlcssLogo, javascriptLogo, tailwindLogo, vercelLogo],
@@ -92,7 +92,7 @@ const projects = [
       fr: "Portfolio moderne développé avec Vite + React, présentant des projets et des compétences de manière élégante et professionnelle."
     },
     image: portfolioImg,
-    themeColor: "#22c55e",
+    themeColor: "#0ea5e9",
     liveLink: "https://meuport.vercel.app",
     figmaLink: "#",
     skills: [reactLogo, tailwindLogo, vercelLogo],
