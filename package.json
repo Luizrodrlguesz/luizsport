@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://luizsport.github.io/luizsport",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
