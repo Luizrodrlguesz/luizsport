@@ -67,7 +67,7 @@ function Portfolio() {
     <main className="portfolio">
       <section className="section intro" id="home">
         <video autoPlay muted loop playsInline className="bg-video">
-          <source src="/public/bg-video.mp4" type="video/mp4" />
+          <source src="/bg-video.mp4" type="video/mp4" />
           Seu navegador não suporta vídeos em HTML5.
         </video>
 
