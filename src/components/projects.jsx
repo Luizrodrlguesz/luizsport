@@ -66,7 +66,7 @@ const projects = [
     image: haberImg,
     themeColor: "#22c55e",
     liveLink: "https://haber.vercel.app",
-    figmaLink: "#",
+    figmaLink: "https://www.figma.com/design/0gHgezIDrlEidd1cYQymAY/lunarbot?node-id=8-134&t=9CtnBgcuyuGNeN0I-0",
     skills: [reactLogo, htmlcssLogo, javascriptLogo, tailwindLogo, vercelLogo],
     category: {
       pt: "Landing Page",
