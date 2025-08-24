@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import lunarbotImg from "/src/assets/lunar.png";
 import haberImg from "/src/assets/haber.png";
+import aprovaImg from "/src/assets/aprova.png";
 import portfolioImg from "/src/assets/portifolio.png";
 import htmlcssLogo from "/src/assets/skills/htmlcss.png";
 import reactLogo from "/src/assets/skills/react.png";
 import laravelLogo from "/src/assets/skills/laravel.png";
+import postLogo from "/src/assets/skills/postman.png";
 import tailwindLogo from "/src/assets/skills/tailwind.png";
 import bootstrapLogo from "/src/assets/skills/bootstrap.png";
 import javascriptLogo from "/src/assets/skills/js.png";
@@ -26,9 +28,9 @@ const projects = [
       fr: "LunarBot.io"
     },
     subtitle: {
-      pt: "Dashboard Administrativo",
-      en: "Admin Dashboard",
-      fr: "Tableau de bord Administratif"
+      pt: "Dashboard Administrativo e Landing Page",
+      en: "Admin Dashboard and Landing Page",
+      fr: "Tableau de bord Administratif et Landing Page"
     },
     description: {
       pt: "Sistema de gerenciamento para bot do Telegram com interface intuitiva. Inclui controle de usuários, mensagens, comandos, grupos e monitoramento de estatísticas, configurações e logs. Desenvolvido com foco na usabilidade e eficiência operacional.",
@@ -38,8 +40,36 @@ const projects = [
     image: lunarbotImg,
     themeColor: "#8b5cf6",
     liveLink: "https://lunarbot.com.br/",
-    figmaLink: "#",
-    skills: [htmlcssLogo, bootstrapLogo, javascriptLogo, laravelLogo, notionLogo, figmaLogo],
+    figmaLink: "https://www.figma.com/design/0gHgezIDrlEidd1cYQymAY/lunarbot?node-id=8-134&t=9CtnBgcuyuGNeN0I-0",
+    skills: [htmlcssLogo, bootstrapLogo, javascriptLogo, laravelLogo, postLogo, notionLogo, figmaLogo],
+    category: {
+      pt: "Sistema e Landing Page",
+      en: "System and Landing Page",
+      fr: "Système et Landing Page"
+    }
+  },
+  {
+    id: 2,
+    title: {
+      pt: "Aprova Legal",
+      en: "Aprova Legal",
+      fr: "Aprova Legal"
+    },
+    subtitle: {
+      pt: "Sistema de Seguro Imobiliário",
+      en: "Real Estate Insurance System",
+      fr: "Système d'assurance immobilière"
+    },
+    description: {
+      pt: "Sistema de Seguro Imobiliário com interface intuitiva e funcionalidades avançadas. Inclui controle de clientes, apólices, sinistros, relatórios e muito mais.",
+      en: "Real estate insurance system with intuitive interface and advanced features. Includes customer control, policies, claims, reports and more.",
+      fr: "Système d'assurance immobilière avec interface intuitive et fonctionnalités avancées. Inclut le contrôle des clients, des polices, des sinistres, des rapports et bien plus encore."
+    },
+    image: aprovaImg,
+    themeColor: "#22c55e",
+    liveLink: "#",
+    figmaLink: "https://www.figma.com/design/3RdM5hEbL9989k5AhNRTIe/Aprova-Legal?t=xAN2eKZc5v8n3KAc-0",
+    skills: [htmlcssLogo, bootstrapLogo, javascriptLogo, laravelLogo, figmaLogo],
     category: {
       pt: "Sistema",
       en: "System",
@@ -47,59 +77,31 @@ const projects = [
     }
   },
   {
-    id: 2,
+    id: 3,
     title: {
       pt: "Haber Contabilidade",
       en: "Haber Accounting",
       fr: "Haber Comptabilité"
     },
     subtitle: {
-      pt: "Landing Page Profissional",
-      en: "Professional Landing Page",
-      fr: "Landing Page Professionnelle"
+      pt: "Landing Page Profissional e micro-sistema de controle de contabilidade",
+      en: "Professional Landing Page and accounting control system",
+      fr: "Landing Page Professionnelle et système de contrôle de comptabilité"
     },
     description: {
-      pt: "Landing page elegante focada em captação de leads para serviços contábeis. Design responsivo com foco em conversão e experiência do usuário.",
-      en: "Elegant landing page focused on lead generation for accounting services. Responsive design focused on conversion and user experience.",
-      fr: "Landing page élégante axée sur la génération de leads pour les services comptables. Design responsive axé sur la conversion et l'expérience utilisateur."
+      pt: "Landing Page profissional desenvolvida com foco em captação de leads para serviços contábeis. Micro-sistema de controle de contabilidade desenvolvido com foco em usabilidade e eficiência operacional.",
+      en: "Professional landing page focused on lead generation for accounting services. Accounting control system developed with focus on usability and operational efficiency.",
+      fr: "Landing Page professionnelle axée sur la génération de leads pour les services comptables. Système de contrôle de comptabilité développé avec un focus sur l'utilisabilité et l'efficacité opérationnelle."
     },
     image: haberImg,
-    themeColor: "#22c55e",
-    liveLink: "https://haber.vercel.app",
-    figmaLink: "https://www.figma.com/design/0gHgezIDrlEidd1cYQymAY/lunarbot?node-id=8-134&t=9CtnBgcuyuGNeN0I-0",
-    skills: [reactLogo, htmlcssLogo, javascriptLogo, tailwindLogo, vercelLogo],
-    category: {
-      pt: "Landing Page",
-      en: "Landing Page",
-      fr: "Landing Page"
-    }
-  },
-  {
-    id: 3,
-    title: {
-      pt: "Portfólio Pessoal",
-      en: "Personal Portfolio",
-      fr: "Portfolio Personnel"
-    },
-    subtitle: {
-      pt: "Portfólio Interativo",
-      en: "Interactive Portfolio",
-      fr: "Portfolio Interactif"
-    },
-    description: {
-      pt: "Portfólio moderno desenvolvido com Vite + React, apresentando projetos e habilidades de forma elegante e profissional.",
-      en: "Modern portfolio developed with Vite + React, presenting projects and skills in an elegant and professional way.",
-      fr: "Portfolio moderne développé avec Vite + React, présentant des projets et des compétences de manière élégante et professionnelle."
-    },
-    image: portfolioImg,
     themeColor: "#0ea5e9",
-    liveLink: "https://meuport.vercel.app",
+    liveLink: "https://haber.vercel.app",
     figmaLink: "#",
     skills: [reactLogo, tailwindLogo, vercelLogo],
     category: {
-      pt: "Portfólio",
-      en: "Portfolio",
-      fr: "Portfolio"
+      pt: "Sistema e Landing Page",
+      en: "System and Landing Page",
+      fr: "Système et Landing Page"
     }
   },
 ];
