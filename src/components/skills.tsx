@@ -2,8 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import "./skills.css";
 import reactLogo from "/src/assets/skills/react.png";
 import jsLogo from "/src/assets/skills/js.png";
+import tsLogo from "/src/assets/skills/ts.png";
 import htmlcssLogo from "/src/assets/skills/htmlcss.png";
 import tailwindLogo from "/src/assets/skills/tailwind.png";
+import flutterLogo from "/src/assets/skills/flutter.png";
 import laravelLogo from "/src/assets/skills/laravel.png";
 import gitLogo from "/src/assets/skills/git.png";
 import figmaLogo from "/src/assets/skills/figma.png";
@@ -19,8 +21,31 @@ import voyajatoImg from "../assets/voyajato.png";
 import { useLanguage } from "../LanguageContext";
 import translations from "../i18n";
 
+interface Skill {
+  id: string;
+  name: {
+    pt: string;
+    en: string;
+    fr: string;
+  };
+  logo: string;
+  description: {
+    pt: string;
+    en: string;
+    fr: string;
+  };
+}
+
+interface SkillsData {
+  front: Skill[];
+  back: Skill[];
+  outros: Skill[];
+}
+
+type Category = 'front' | 'back' | 'outros';
+
 // Skill base
-const allSkills = {
+const allSkills: SkillsData = {
   front: [
     {
       id: "htmlcss",
@@ -48,6 +73,20 @@ const allSkills = {
         pt: "Biblioteca JavaScript para construir interfaces de usuário modernas e reativas. Tenho domínio de componentes, hooks e integração com APIs.",
         en: "JavaScript library to build modern and reactive user interfaces. I master components, hooks, and API integration.",
         fr: "Bibliothèque JavaScript pour créer des interfaces utilisateur modernes et réactives. Maîtrise des composants, hooks et intégration d'APIs.",
+      },
+    },
+    {
+      id: "flutter",
+      name: {
+        pt: "Flutter",
+        en: "Flutter",
+        fr: "Flutter",
+      },
+      logo: flutterLogo,
+      description: {
+        pt: "Framework para desenvolvimento de aplicativos multiplataforma. Tenho domínio de widgets, estado e integração com APIs.",
+        en: "Framework for developing multiplatform applications. I master widgets, state, and API integration.",
+        fr: "Framework pour le développement d'applications multiplateformes. Maîtrise des widgets, état et intégration d'APIs.",
       },
     },
     {
@@ -109,6 +148,20 @@ const allSkills = {
       },
     },
     {
+      id: "ts",
+      name: {
+        pt: "TypeScript",
+        en: "TypeScript",
+        fr: "TypeScript",
+      },
+      logo: tsLogo,
+      description: {
+        pt: "Linguagem de programação que adiciona tipagem estática ao JavaScript, melhorando a qualidade e a manutenibilidade do código.",
+        en: "Programming language that adds static typing to JavaScript, improving the quality and maintainability of code.",
+        fr: "Langage de programmation qui ajoute la typage statique au JavaScript, améliorant la qualité et la maintenabilité du code.",
+      },
+    },
+    {
       id: "laravel",
       name: {
         pt: "Laravel (PHP)",
@@ -150,6 +203,7 @@ const allSkills = {
         fr: "Framework React qui offre le rendu côté serveur, la génération de sites statiques et d'excellentes performances pour les applications web modernes.",
       },
     },
+    
   ],
   outros: [
     {
@@ -240,14 +294,12 @@ const allSkills = {
 };
 
 export default function SkillsSection() {
-  const [category, setCategory] = useState("front");
-  const [selectedSkillId, setSelectedSkillId] = useState(allSkills.front[0].id);
-  const [animatingCategory, setAnimatingCategory] = useState(false);
-  const [animatingSkill, setAnimatingSkill] = useState(false);
-  const timeoutRef = useRef(null);
-  const [bgVisible, setBgVisible] = useState(false);
-  const [skillsVisible, setSkillsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const [category, setCategory] = useState<Category>("front");
+  const [selectedSkillId, setSelectedSkillId] = useState<string>(allSkills.front[0].id);
+  const [animatingCategory, setAnimatingCategory] = useState<boolean>(false);
+  const [animatingSkill, setAnimatingSkill] = useState<boolean>(false);
+  const [skillsVisible, setSkillsVisible] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const { language } = useLanguage();
   const t = translations[language].skills;
 
@@ -264,14 +316,10 @@ export default function SkillsSection() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => setBgVisible(true), 300);
-  }, []);
-
   const skills = allSkills[category];
   const selectedSkill = skills.find((s) => s.id === selectedSkillId);
 
-  function handleCategoryChange(newCategory) {
+  function handleCategoryChange(newCategory: Category) {
     if (category === newCategory) return;
     setAnimatingCategory(true);
     setTimeout(() => {
@@ -282,7 +330,7 @@ export default function SkillsSection() {
   }
 
   // Animação ao trocar skill
-  function handleSkillChange(skillId) {
+  function handleSkillChange(skillId: string) {
     if (selectedSkillId === skillId) return;
     setAnimatingSkill(true);
     setTimeout(() => {
@@ -366,3 +414,4 @@ export default function SkillsSection() {
     </section>
   );
 }
+

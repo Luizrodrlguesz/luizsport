@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import lunarbotImg from "/src/assets/lunar.png";
 import haberImg from "/src/assets/haber.png";
 import aprovaImg from "/src/assets/aprova.png";
-import portfolioImg from "/src/assets/portifolio.png";
 import htmlcssLogo from "/src/assets/skills/htmlcss.png";
 import reactLogo from "/src/assets/skills/react.png";
 import laravelLogo from "/src/assets/skills/laravel.png";
@@ -13,13 +12,41 @@ import javascriptLogo from "/src/assets/skills/js.png";
 import figmaLogo from "/src/assets/skills/figma.png";
 import notionLogo from "/src/assets/skills/notion.png";
 import vercelLogo from "/src/assets/skills/vercel.png";
-import voyajatoImg from "../assets/voyajato.png";
 import boyImg from "../assets/boy.png";
 import "./project.css";
 import { useLanguage } from "../LanguageContext";
 import translations from "../i18n";
 
-const projects = [
+interface Project {
+  id: number;
+  title: {
+    pt: string;
+    en: string;
+    fr: string;
+  };
+  subtitle: {
+    pt: string;
+    en: string;
+    fr: string;
+  };
+  description: {
+    pt: string;
+    en: string;
+    fr: string;
+  };
+  image: string;
+  themeColor: string;
+  liveLink: string;
+  figmaLink: string;
+  skills: string[];
+  category: {
+    pt: string;
+    en: string;
+    fr: string;
+  };
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: {
@@ -107,12 +134,11 @@ const projects = [
 ];
 
 export default function ProjectCarousel() {
-  const [active, setActive] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [fade, setFade] = useState("in"); // novo estado para fade
-  const [bgVisible, setBgVisible] = useState(false);
-  const [projectsVisible, setProjectsVisible] = useState(false);
-  const sectionRef = useRef(null);
+  const [active, setActive] = useState<number>(0);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [fade, setFade] = useState<"in" | "out">("in");
+  const [projectsVisible, setProjectsVisible] = useState<boolean>(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const { language } = useLanguage();
   const t = translations[language].projects;
 
@@ -129,22 +155,18 @@ export default function ProjectCarousel() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    // Efeito de entrada ao montar
-    setTimeout(() => setBgVisible(true), 300);
-  }, []);
 
-  const handleProjectChange = (index) => {
+  const handleProjectChange = (index: number) => {
     if (isAnimating || index === active) return;
     setIsAnimating(true);
-    setFade("out"); // inicia fade-out
+    setFade("out");
     setTimeout(() => {
       setActive(index);
-      setFade("in"); // inicia fade-in
+      setFade("in");
       setTimeout(() => {
         setIsAnimating(false);
-      }, 350); // tempo do fade-in
-    }, 350); // tempo do fade-out
+      }, 350);
+    }, 350);
   };
 
   const currentProject = projects[active];
@@ -175,7 +197,7 @@ export default function ProjectCarousel() {
               key={project.id}
               className={`project-nav-btn ${index === active ? "active" : ""}`}
               onClick={() => handleProjectChange(index)}
-              style={{ '--theme-color': project.themeColor }}
+              style={{ '--theme-color': project.themeColor } as React.CSSProperties}
             >
               <span className="project-nav-number">0{index + 1}</span>
               <span className="project-nav-title">{project.title[language]}</span>
@@ -236,7 +258,7 @@ export default function ProjectCarousel() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-btn primary"
-                    style={{ '--theme-color': currentProject.themeColor }}
+                    style={{ '--theme-color': currentProject.themeColor } as React.CSSProperties}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M18 13V19A2 2 0 0 1 16 21H5A2 2 0 0 1 3 19V8A2 2 0 0 1 5 6H11M15 3H21V9M10 14L21 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -248,7 +270,7 @@ export default function ProjectCarousel() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="project-btn secondary"
-                    style={{ '--theme-color': currentProject.themeColor }}
+                    style={{ '--theme-color': currentProject.themeColor } as React.CSSProperties}
                   >
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -275,3 +297,4 @@ export default function ProjectCarousel() {
     </section>
   );
 }
+

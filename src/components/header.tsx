@@ -4,7 +4,7 @@ import { useLanguage } from "../LanguageContext";
 import translations from "../i18n";
 
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState<boolean>(false);
   const { language, setLanguage } = useLanguage();
   const t = translations[language].header;
 
@@ -19,7 +19,7 @@ function Header() {
   }, []);
 
   // Scroll suave para âncoras
-  const handleNavClick = (e, id) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const el = document.getElementById(id);
     if (el) {
@@ -37,7 +37,11 @@ function Header() {
           <a href="#skills" onClick={e => handleNavClick(e, 'skills')}>{t.skills}</a>
           <a href="#projects" onClick={e => handleNavClick(e, 'projects')}>{t.projects}</a>
           <a href="#contact" onClick={e => handleNavClick(e, 'contact')}>{t.contact}</a>
-          <select className="lang-select" value={language} onChange={e => setLanguage(e.target.value)}>
+          <select 
+            className="lang-select" 
+            value={language} 
+            onChange={e => setLanguage(e.target.value as 'pt' | 'en' | 'fr')}
+          >
             <option value="pt">PT-BR</option>
             <option value="en">EN-US</option>
             <option value="fr">FR-FR</option>
@@ -49,3 +53,4 @@ function Header() {
 }
 
 export default Header;
+

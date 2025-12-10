@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useLanguage } from "../LanguageContext";
 import translations from "../i18n";
 
@@ -40,3 +40,4 @@ function Footer() {
 }
 
 export default Footer;
+

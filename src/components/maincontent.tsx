@@ -1,4 +1,3 @@
-import React from "react";
 import Portfolio from "../pages";
 
 function MainContent() {
@@ -10,3 +9,4 @@ function MainContent() {
 }
 
 export default MainContent;
+

@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import "../index.css";
 import SkillsSection from "../components/skills";
-import ProjectCarousel from "./projects";
+import ProjectCarousel from "../components/projects";
 import profileImg from "../assets/profile.png";
 import profile2Img from "../assets/profile2.png";
 import guitarImg from "../assets/guitar.png";
@@ -9,10 +9,10 @@ import { useLanguage } from "../LanguageContext";
 import translations from "../i18n";
 
 function Portfolio() {
-  const [showAltProfile, setShowAltProfile] = useState(false);
-  const [aboutVisible, setAboutVisible] = useState(false);
-  const aboutRef = useRef(null);
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showAltProfile, setShowAltProfile] = useState<boolean>(false);
+  const [aboutVisible, setAboutVisible] = useState<boolean>(false);
+  const aboutRef = useRef<HTMLElement>(null);
+  const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
   const { language } = useLanguage();
   const t = translations[language];
   const capacitationsList = t.about.capacitationsList || [
@@ -23,8 +23,8 @@ function Portfolio() {
   ];
 
   useEffect(() => {
-    let timeoutId;
-    let intervalId;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    let intervalId: ReturnType<typeof setTimeout>;
     function scheduleGlimpse() {
       const next = Math.random() * 10000 + 5000;
       intervalId = setTimeout(() => {
@@ -362,3 +362,4 @@ function Portfolio() {
 }
 
 export default Portfolio;
+

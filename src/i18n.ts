@@ -1,4 +1,69 @@
-const translations = {
+type Language = 'pt' | 'en' | 'fr';
+
+interface Translations {
+  pt: TranslationSet;
+  en: TranslationSet;
+  fr: TranslationSet;
+}
+
+interface TranslationSet {
+  header: {
+    home: string;
+    about: string;
+    skills: string;
+    projects: string;
+    contact: string;
+  };
+  footer: {
+    copyright: string;
+    github: string;
+    linkedin: string;
+    email: string;
+    whatsapp: string;
+    instagram: string;
+  };
+  intro: {
+    title: string;
+    subtitle: string;
+    description: string;
+    acessar: string;
+  };
+  about: {
+    title: string;
+    description: string;
+    capacitations: string;
+    capacitationsList: string[];
+    experience: string;
+    experience1: string;
+    experience2: string;
+  };
+  skills: {
+    title: string;
+    front: string;
+    back: string;
+    others: string;
+  };
+  projects: {
+    title: string;
+    subtitle: string;
+    techs: string;
+    visit: string;
+    figma: string;
+  };
+  contact: {
+    title: string;
+    subtitle: string;
+    email: string;
+    github: string;
+    linkedin: string;
+    resume: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    ctaButton: string;
+  };
+}
+
+const translations: Translations = {
   pt: {
     header: {
       home: 'Início',
@@ -84,7 +149,7 @@ const translations = {
     },
     about: {
       title: 'About me',
-      description: 'Software Engineering student at Unicesumar University, my professional goal is driven by the desire to learn more about the field and to contribute more and more to the people who accompany me on this journey. I believe that software development goes beyond code, being a powerful tool to solve real problems and create solutions that positively impact people’s lives. I constantly seek to improve my technical and soft skills to contribute significantly to collaborative projects.',
+      description: "Software Engineering student at Unicesumar University, my professional goal is driven by the desire to learn more about the field and to contribute more and more to the people who accompany me on this journey. I believe that software development goes beyond code, being a powerful tool to solve real problems and create solutions that positively impact people's lives. I constantly seek to improve my technical and soft skills to contribute significantly to collaborative projects.",
       capacitations: 'Capacitations',
       capacitationsList: [
         '🔹 Front-end: Proficient in HTML, CSS, JavaScript, Tailwind CSS, and React. I have experience creating responsive and interactive interfaces, ensuring an excellent user experience.',
@@ -111,13 +176,13 @@ const translations = {
     },
     contact: {
       title: 'Contact Me',
-      subtitle: 'Let’s create something amazing together! I am always open to new opportunities and collaborations.',
+        subtitle: "Let's create something amazing together! I am always open to new opportunities and collaborations.",
       email: 'Send a direct message',
       github: 'See my projects and contributions',
       linkedin: 'Connect professionally',
       resume: 'Download my resume',
       ctaTitle: 'Ready to get started?',
-      ctaSubtitle: 'Let’s turn your ideas into digital reality',
+        ctaSubtitle: "Let's turn your ideas into digital reality",
       ctaButton: 'Start Conversation',
     }
   },
@@ -140,22 +205,22 @@ const translations = {
     intro: {
       title: 'Je suis Luiz Henrique',
       subtitle: 'Développeur Front-end Junior | React | Node.js | Tailwind',
-      description: 'Bonjour, je suis Luiz Rodrigues, Développeur Front-end Junior. J’ai commencé mon parcours dans le développement en 2023 et depuis, j’apprends et applique mes compétences dans des projets réels, en me concentrant sur JavaScript moderne, le développement d’interfaces web et l’optimisation des performances.',
+      description: "Bonjour, je suis Luiz Rodrigues, Développeur Front-end Junior. J'ai commencé mon parcours dans le développement en 2023 et depuis, j'apprends et applique mes compétences dans des projets réels, en me concentrant sur JavaScript moderne, le développement d'interfaces web et l'optimisation des performances.",
       acessar: 'Accéder',
     },
     about: {
       title: 'À propos de moi',
-      description: 'Étudiant en ingénierie logicielle à l’université Unicesumar, mon objectif professionnel est motivé par le désir d’en savoir plus sur le domaine et de pouvoir contribuer de plus en plus aux personnes qui m’accompagnent dans ce parcours. Je crois que le développement logiciel va au-delà du code, étant un outil puissant pour résoudre des problèmes réels et créer des solutions qui ont un impact positif sur la vie des gens. Je cherche constamment à améliorer mes compétences techniques et relationnelles pour contribuer de manière significative à des projets collaboratifs.',
+      description: "Étudiant en ingénierie logicielle à l'université Unicesumar, mon objectif professionnel est motivé par le désir d'en savoir plus sur le domaine et de pouvoir contribuer de plus en plus aux personnes qui m'accompagnent dans ce parcours. Je crois que le développement logiciel va au-delà du code, étant un outil puissant pour résoudre des problèmes réels et créer des solutions qui ont un impact positif sur la vie des gens. Je cherche constamment à améliorer mes compétences techniques et relationnelles pour contribuer de manière significative à des projets collaboratifs.",
       capacitations: 'Formations',
       capacitationsList: [
-        '🔹 Front-end : Compétent en HTML, CSS, JavaScript, Tailwind CSS et React. Expérience dans la création d’interfaces réactives et responsives, garantissant une excellente expérience utilisateur.',
+        "🔹 Front-end : Compétent en HTML, CSS, JavaScript, Tailwind CSS et React. Expérience dans la création d'interfaces réactives et responsives, garantissant une excellente expérience utilisateur.",
         '🔹 Back-end : Connaissances en Node.js et PHP (Laravel). Participation à des projets axés sur les intégrations, formulaires et sécurité, offrant une vision globale du cycle de développement.',
         '🔹 Contrôle de version & Collaboration : Expérience avec Git et les méthodologies agiles, permettant une intégration efficace dans les équipes de développement.',
         '🔹 Communication globale : Certifié en anglais, permettant une collaboration efficace sur des projets internationaux.'
       ],
       experience: 'Expérience Professionnelle',
-      experience1: 'J’ai travaillé pendant 7 mois dans une startup, principalement dans le développement Front-end. Mon expérience comprenait la création de sites, la maintenance et la correction de bugs dans les interfaces systèmes, en utilisant HTML, CSS et JavaScript. J’ai également eu l’occasion d’apprendre et d’appliquer des concepts de Back-end, en travaillant avec PHP et Laravel sur des tâches telles que le développement de formulaires et la validation des utilisateurs.',
-      experience2: 'Actuellement, depuis début 2024, je travaille comme développeur Front-end chez BuskTraffic, où j’assume également des tâches de design, complétant ainsi mes compétences techniques tant dans la structure du code que dans la capacité à créer et développer des interfaces et du design en général. Je finis également par gérer des tâches de back-end, utilisant souvent PHP avec le framework Laravel.'
+      experience1: "J'ai travaillé pendant 7 mois dans une startup, principalement dans le développement Front-end. Mon expérience comprenait la création de sites, la maintenance et la correction de bugs dans les interfaces systèmes, en utilisant HTML, CSS et JavaScript. J'ai également eu l'occasion d'apprendre et d'appliquer des concepts de Back-end, en travaillant avec PHP et Laravel sur des tâches telles que le développement de formulaires et la validation des utilisateurs.",
+        experience2: "Actuellement, depuis début 2024, je travaille comme développeur Front-end chez BuskTraffic, où j'assume également des tâches de design, complétant ainsi mes compétences techniques tant dans la structure du code que dans la capacité à créer et développer des interfaces et du design en général. Je finis également par gérer des tâches de back-end, utilisant souvent PHP avec le framework Laravel."
     },
     skills: {
       title: 'Compétences',
@@ -172,7 +237,7 @@ const translations = {
     },
     contact: {
       title: 'Contactez-moi',
-      subtitle: 'Créons quelque chose d’incroyable ensemble ! Je suis toujours ouvert à de nouvelles opportunités et collaborations.',
+      subtitle: "Créons quelque chose d'incroyable ensemble ! Je suis toujours ouvert à de nouvelles opportunités et collaborations.",
       email: 'Envoyer un message direct',
       github: 'Voir mes projets et contributions',
       linkedin: 'Connectez-vous professionnellement',
@@ -184,4 +249,6 @@ const translations = {
   }
 };
 
-export default translations; 
+export default translations;
+export type { Language, TranslationSet, Translations };
+
